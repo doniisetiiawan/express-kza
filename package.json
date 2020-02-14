@@ -9,5 +9,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
     "prettier": "1.19.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }

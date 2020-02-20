@@ -6,6 +6,9 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 
+const routes = require('./routes');
+const user = require('./routes/users');
+
 const router = express.Router();
 
 const app = express();
@@ -96,35 +99,35 @@ app.use(errorhandler());
 //   res.send('ab(cd)?e');
 // });
 
-router.get('/user/:id', (req, res) => {
-  res.send(`user id: ${req.params.id}`);
-});
-
-router.get('/country/:country/state/:state', (req, res) => {
-  res.send(`${req.params.country}, ${req.params.state}`);
-});
-
-router.get('/route/:from-:to', (req, res) => {
-  res.send(`${req.params.from} to ${req.params.to}`);
-});
-
-router.get('/file/:name.:ext', (req, res) => {
-  res.send(
-    `${req.params.name}.${req.params.ext.toLowerCase()}`,
-  );
-});
-
-router.get('/feed/:format?', (req, res) => {
-  if (req.params.format) {
-    res.send(`format: ${req.params.format}`);
-  } else {
-    res.send('default format');
-  }
-});
-
-router.get(/.+app?le$/, (req, res) => {
-  res.send('/.+ap?le$/');
-});
+// router.get('/user/:id', (req, res) => {
+//   res.send(`user id: ${req.params.id}`);
+// });
+//
+// router.get('/country/:country/state/:state', (req, res) => {
+//   res.send(`${req.params.country}, ${req.params.state}`);
+// });
+//
+// router.get('/route/:from-:to', (req, res) => {
+//   res.send(`${req.params.from} to ${req.params.to}`);
+// });
+//
+// router.get('/file/:name.:ext', (req, res) => {
+//   res.send(
+//     `${req.params.name}.${req.params.ext.toLowerCase()}`,
+//   );
+// });
+//
+// router.get('/feed/:format?', (req, res) => {
+//   if (req.params.format) {
+//     res.send(`format: ${req.params.format}`);
+//   } else {
+//     res.send('default format');
+//   }
+// });
+//
+// router.get(/.+app?le$/, (req, res) => {
+//   res.send('/.+ap?le$/');
+// });
 
 // router.get(/a/, (req, res) => {
 //   res.send('/a/');
@@ -138,17 +141,17 @@ router.get(/.+app?le$/, (req, res) => {
 //   res.send('abc*');
 // });
 
-router.get('/abc*', (req, res, next) => {
-  if (req.path === '/abcd') {
-    next();
-  } else {
-    res.send('abc*');
-  }
-});
-
-router.get('/abcd', (req, res) => {
-  res.send('abcd');
-});
+// router.get('/abc*', (req, res, next) => {
+//   if (req.path === '/abcd') {
+//     next();
+//   } else {
+//     res.send('abc*');
+//   }
+// });
+//
+// router.get('/abcd', (req, res) => {
+//   res.send('abcd');
+// });
 
 // router.get(
 //   '/',
@@ -165,22 +168,25 @@ router.get('/abcd', (req, res) => {
 //   },
 // );
 
-const one = (req, res, next) => {
-  res.set('X-One', 'hey!');
-  next();
-};
+// const one = (req, res, next) => {
+//   res.set('X-One', 'hey!');
+//   next();
+// };
+//
+// const two = (req, res, next) => {
+//   res.set('X-Two', 'ho!');
+//   next();
+// };
+//
+// router.get('/', [one, two], (req, res) => {
+//   res.send("Let's go!");
+// });
 
-const two = (req, res, next) => {
-  res.set('X-Two', 'ho!');
-  next();
-};
+router.get('/', routes.index);
+router.get('/users', user.list);
 
-router.get('/', [one, two], (req, res) => {
-  res.send("Let's go!");
-});
-
-console.log(config.db_host);
-console.log(config.db_user);
-console.log(config.db_pass);
+// console.log(config.db_host);
+// console.log(config.db_user);
+// console.log(config.db_pass);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

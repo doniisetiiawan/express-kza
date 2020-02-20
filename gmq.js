@@ -31,50 +31,50 @@ app.use(errorhandler());
 // });
 // router.get('/', (req, res) => res.send(config.title));
 
-router.all('/', (req, res, next) => {
-  res.set('X-Catch-All', 'true');
-  next();
-});
-
-router.get('/', (req, res) => {
-  res.send('/ GET OK');
-});
-
-router.post('/', (req, res) => {
-  res.send('/ POST OK');
-});
-
-router.put('/', (req, res) => {
-  res.send('/ PUT OK');
-});
-
-router.patch('/', (req, res) => {
-  res.send('/ PATCH OK');
-});
-
-router.delete('/', (req, res) => {
-  res.send('/ DELETE OK');
-});
-
-router.options('/', (req, res) => {
-  res.send('/ OPTIONS OK');
-});
-
-router['m-search']('/', (req, res) => {
-  res.send('/ M-SEARCH OK');
-});
-
-router.notify('/', (req, res) => {
-  res.send('/ NOTIFY OK');
-});
-
-router.subscribe('/', (req, res) => {
-  res.send('/ SUBSCRIBE OK');
-});
-
-router.unsubscribe('/', (req, res) => {
-  res.send('/ UNSUBSCRIBE OK');
-});
+// router.all('/', (req, res, next) => {
+//   res.set('X-Catch-All', 'true');
+//   next();
+// });
+//
+// router.get('/', (req, res) => {
+//   res.send('/ GET OK');
+// });
+//
+// router.post('/', (req, res) => {
+//   res.send('/ POST OK');
+// });
+//
+// router.put('/', (req, res) => {
+//   res.send('/ PUT OK');
+// });
+//
+// router.patch('/', (req, res) => {
+//   res.send('/ PATCH OK');
+// });
+//
+// router.delete('/', (req, res) => {
+//   res.send('/ DELETE OK');
+// });
+//
+// router.options('/', (req, res) => {
+//   res.send('/ OPTIONS OK');
+// });
+//
+// router['m-search']('/', (req, res) => {
+//   res.send('/ M-SEARCH OK');
+// });
+//
+// router.notify('/', (req, res) => {
+//   res.send('/ NOTIFY OK');
+// });
+//
+// router.subscribe('/', (req, res) => {
+//   res.send('/ SUBSCRIBE OK');
+// });
+//
+// router.unsubscribe('/', (req, res) => {
+//   res.send('/ UNSUBSCRIBE OK');
+// });
 
 // router.get('/abcd', (req, res) => {
 //   res.send('abcd');
@@ -148,6 +148,35 @@ router.get('/abc*', (req, res, next) => {
 
 router.get('/abcd', (req, res) => {
   res.send('abcd');
+});
+
+// router.get(
+//   '/',
+//   (req, res, next) => {
+//     res.set('X-One', 'hey!');
+//     next();
+//   },
+//   (req, res, next) => {
+//     res.set('X-Two', 'ho!');
+//     next();
+//   },
+//   (req, res) => {
+//     res.send("Let's go!");
+//   },
+// );
+
+const one = (req, res, next) => {
+  res.set('X-One', 'hey!');
+  next();
+};
+
+const two = (req, res, next) => {
+  res.set('X-Two', 'ho!');
+  next();
+};
+
+router.get('/', [one, two], (req, res) => {
+  res.send("Let's go!");
 });
 
 console.log(config.db_host);

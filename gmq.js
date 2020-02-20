@@ -5,7 +5,10 @@ const errorhandler = require('errorhandler');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+// eslint-disable-next-line no-unused-vars
 const namespace = require('express-namespace');
+// eslint-disable-next-line no-unused-vars
+const resource = require('express-resource');
 
 // const routes = require('./handlers');
 // const user = require('./handlers/users');
@@ -218,6 +221,7 @@ app.namespace('/articles', () => {
     });
   });
 });
+app.resource('users', require('./handlers/users'));
 
 // console.log(config.db_host);
 // console.log(config.db_user);

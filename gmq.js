@@ -6,8 +6,8 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 
-const routes = require('./routes');
-const user = require('./routes/users');
+// const routes = require('./handlers');
+// const user = require('./handlers/users');
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ const app = express();
 const port = 3000;
 
 // const config = iniparser.parseSync('./pqs.ini');
-const config = require('./lbv.json')[app.get('env')];
+// const config = require('./lbv.json')[app.get('env')];
 
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'access.log'),
@@ -182,8 +182,9 @@ app.use(errorhandler());
 //   res.send("Let's go!");
 // });
 
-router.get('/', routes.index);
-router.get('/users', user.list);
+// router.get('/', routes.index);
+// router.get('/users', user.list);
+require('./routes')(app);
 
 // console.log(config.db_host);
 // console.log(config.db_user);

@@ -5,6 +5,7 @@ const errorhandler = require('errorhandler');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+const namespace = require('express-namespace');
 
 // const routes = require('./handlers');
 // const user = require('./handlers/users');
@@ -185,6 +186,38 @@ app.use(errorhandler());
 // router.get('/', routes.index);
 // router.get('/users', user.list);
 require('./routes')(app);
+
+app.namespace('/articles', () => {
+  app.get('/', (req, res) => {
+    res.send('index of articles');
+  });
+
+  app.get('/new', (req, res) => {
+    res.send('new article');
+  });
+
+  app.get('/edit/:id', (req, res) => {
+    res.send(`edit article ${req.params.id}`);
+  });
+
+  app.get('/delete/:id', (req, res) => {
+    res.send(`delete article ${req.params.id}`);
+  });
+
+  app.get('/2013', (req, res) => {
+    res.send('articles from 2013');
+  });
+
+  app.namespace('/2013/jan', () => {
+    app.get('/', (req, res) => {
+      res.send('articles from jan 2013');
+    });
+
+    app.get('/nodejs', (req, res) => {
+      res.send('articles about Node from jan 2013');
+    });
+  });
+});
 
 // console.log(config.db_host);
 // console.log(config.db_user);

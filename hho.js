@@ -46,5 +46,9 @@ app.put('/request', (req, res) => {
   console.log(`PUT: ${req.body.name}`);
   res.send(`PUT: ${req.body.name}`);
 });
+app.get('/user/:id', (req, res) => {
+  console.log(`User ID: ${req.params.id}`);
+  res.send(`User ID: ${req.params.id}`);
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

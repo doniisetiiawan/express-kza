@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
 
 const upload = multer({ dest: 'files/' });
 
@@ -11,6 +12,10 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('secret7'));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+}));
 
 app.get('/', (req, res) => res.send('Hello World!'));
 

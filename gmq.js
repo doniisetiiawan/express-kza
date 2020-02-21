@@ -32,6 +32,8 @@ app.use(responseTime());
 app.use(router);
 app.use(errorhandler());
 
+app.use(express.static(`${__dirname}/files`));
+
 // router.get('/', (req, res) => res.send('Hello World!'));
 // router.get('/', () => {
 // throw new Error();
@@ -222,6 +224,33 @@ app.namespace('/articles', () => {
   });
 });
 app.resource('users', require('./handlers/users'));
+
+app.get('/file', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, 'files/images.jpeg'),
+    (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('file sent');
+      }
+    },
+  );
+});
+
+app.get('/download', (req, res) => {
+  res.download(
+    path.join(__dirname, 'files/images.jpeg'),
+    'open-secret.png',
+    (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('file downloaded');
+      }
+    },
+  );
+});
 
 // console.log(config.db_host);
 // console.log(config.db_user);

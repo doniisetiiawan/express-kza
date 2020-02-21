@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "body-parser": "latest",
+    "cookie-parser": "^1.4.4",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "express-namespace": "^0.1.1",

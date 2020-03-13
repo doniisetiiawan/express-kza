@@ -1,3 +1,3 @@
-const reverse = require('./evx');
+import reverse from './evx';
 
 console.log(reverse('hippopotamus'));

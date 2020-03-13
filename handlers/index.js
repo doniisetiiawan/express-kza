@@ -1,4 +1,4 @@
-exports.index = (req, res) => {
+const index = (req, res) => {
   // throw new Error();
   // res.status(404);
   // res.send('forced 404');
@@ -53,3 +53,5 @@ exports.index = (req, res) => {
     },
   });
 };
+
+export { index };

@@ -1,17 +1,23 @@
-const express = require('express');
-const responseTime = require('response-time');
-const errorhandler = require('errorhandler');
+import express from 'express';
+import responseTime from 'response-time';
+import errorhandler from 'errorhandler';
+
 // const iniparser = require('iniparser');
-const morgan = require('morgan');
-const fs = require('fs');
-const path = require('path');
+import morgan from 'morgan';
+
+import fs from 'fs';
+import path from 'path';
+
 // eslint-disable-next-line no-unused-vars
-const namespace = require('express-namespace');
+import namespace from 'express-namespace';
+
 // eslint-disable-next-line no-unused-vars
-const resource = require('express-resource');
+import resource from 'express-resource';
 
 // const routes = require('./handlers');
 // const user = require('./handlers/users');
+
+import routes from './routes';
 
 const router = express.Router();
 
@@ -190,7 +196,7 @@ app.use(express.static(`${__dirname}/files`));
 
 // router.get('/', routes.index);
 // router.get('/users', user.list);
-require('./routes')(app);
+routes(app);
 
 app.namespace('/articles', () => {
   app.get('/', (req, res) => {

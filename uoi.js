@@ -7,7 +7,8 @@
 // exports.get_secret = () => secret;
 
 const secret = 'zoltan';
-module.exports = {
+
+export default {
   name: 'Packt',
   lower(input) {
     return input.toLowerCase();

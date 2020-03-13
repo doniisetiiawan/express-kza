@@ -1,4 +1,4 @@
-module.exports = (word) => {
+export default (word) => {
   let reversed = '';
   let i = word.length - 1;
   while (i > -1) {

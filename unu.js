@@ -1,4 +1,4 @@
-const mod = require('./uoi');
+import mod from './uoi';
 
 console.log(mod.name);
 console.log(mod.lower('APPLE'));

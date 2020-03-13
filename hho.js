@@ -1,8 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const multer = require('multer');
-const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
+import express from 'express';
+import bodyParser from 'body-parser';
+import multer from 'multer';
+import cookieParser from 'cookie-parser';
+import cookieSession from 'cookie-session';
 
 const upload = multer({ dest: 'files/' });
 
